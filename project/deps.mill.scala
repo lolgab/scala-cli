@@ -1,3 +1,5 @@
+package build.project
+
 import Deps.Versions
 import mill._
 import scalalib._
@@ -28,7 +30,7 @@ object Scala {
   val testRunnerScalaVersions = runnerScalaVersions ++ allScala3
 
   def scalaJs    = "1.17.0"
-  def scalaJsCli = scalaJs // this must be compatible with the Scala.js version
+  def scalaJsCli = "1.17.0.1" // this must be compatible with the Scala.js version
 
   def listAll: Seq[String] = {
     def patchVer(sv: String): Int =
@@ -92,7 +94,7 @@ object TestDeps {
 
 object InternalDeps {
   object Versions {
-    def mill          = os.read(os.pwd / ".mill-version").trim
+    def mill          = _root_.mill.main.BuildInfo.millVersion
     def lefouMillwRef = "166bcdf5741de8569e0630e18c3b2ef7e252cd96"
   }
 }
